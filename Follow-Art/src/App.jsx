@@ -41,27 +41,23 @@ function App() {
       y: -60, ease: 'none',
     });
 
-    // Counter animation for stats
-    const statNums = document.querySelectorAll('.about-stat-number');
+    // Counter animation for stats — the target comes from data attributes, not the
+    // rendered text, so re-running this effect (e.g. StrictMode) can't read back "0"
+    const statNums = document.querySelectorAll('.about-stat-number[data-value]');
     statNums.forEach((el) => {
-      const text = el.textContent;
-      const num = parseInt(text);
-      if (!isNaN(num)) {
-        gsap.fromTo(el,
-          { textContent: 0 },
-          {
-            scrollTrigger: { trigger: el, start: 'top 80%' },
-            textContent: num,
-            duration: 1.5,
-            ease: 'power2.out',
-            snap: { textContent: 1 },
-            onUpdate: function () {
-              const suffix = text.replace(/[0-9]/g, '');
-              el.textContent = Math.round(gsap.getProperty(el, 'textContent')) + suffix;
-            },
-          }
-        );
-      }
+      const target = Number(el.dataset.value);
+      const suffix = el.dataset.suffix || '';
+      const counter = { value: 0 };
+      el.textContent = `0${suffix}`;
+      gsap.to(counter, {
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        value: target,
+        duration: 1.5,
+        ease: 'power2.out',
+        onUpdate: () => {
+          el.textContent = `${Math.round(counter.value)}${suffix}`;
+        },
+      });
     });
 
 

@@ -73,13 +73,14 @@ const HeroSection = () => {
                     <div className="hero-subtitle" ref={subtitleRef}>
                         <span className="hero-role-badge">AI Engineer</span>
                         <span className="hero-role-sep">·</span>
-                        <span className="hero-role-badge">Full Stack Developer</span>
+                        <span className="hero-role-badge">Technical Consultant</span>
                         <span className="hero-role-sep">·</span>
-                        <span className="hero-role-badge">Azure Certified</span>
+                        <span className="hero-role-badge">Azure AI-102 Certified</span>
                     </div>
                     <p className="hero-tagline">
-                        Building intelligent systems that bridge AI innovation with real-world impact.
-                        Specializing in Azure AI, agentic architectures, and production-grade APIs.
+                        Delivering production AI solutions in the Microsoft ecosystem: Azure OpenAI,
+                        AI Foundry, AI Search, Copilot Studio and Power Platform. I own each solution
+                        end-to-end, from requirements to deployment, governance and cost control.
                     </p>
                     <div className="hero-cta" ref={ctaRef}>
                         <a href="#projects" className="hero-btn hero-btn--primary">
@@ -99,12 +100,12 @@ const HeroSection = () => {
                     </div>
                     <div className="hero-photo-stats">
                         <div className="hero-stat">
-                            <span className="hero-stat-num">5+</span>
-                            <span className="hero-stat-label">Projects</span>
+                            <span className="hero-stat-num">800+</span>
+                            <span className="hero-stat-label">Candidates Screened</span>
                         </div>
                         <div className="hero-stat">
-                            <span className="hero-stat-num">3</span>
-                            <span className="hero-stat-label">Roles</span>
+                            <span className="hero-stat-num">7–10</span>
+                            <span className="hero-stat-label">Team Led</span>
                         </div>
                         <div className="hero-stat">
                             <span className="hero-stat-num">AI-102</span>

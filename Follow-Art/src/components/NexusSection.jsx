@@ -16,33 +16,32 @@ const NexusSection = () => {
                     </div>
                     <hr className="about-divider reveal" />
                     <p className="about-desc reveal">
-                        I'm a <span className="uline">passionate AI Engineer</span> and Full Stack Developer based in India,
-                        currently working as a Jr Consultant at Hosho Digitals. I specialize in building
-                        enterprise <span className="uline">AI systems and agentic chatbots</span> using Azure OpenAI,
-                        Azure AI Foundry, and Copilot Studio.
+                        I'm an <span className="uline">AI Engineer</span> working as a Technical Consultant at
+                        Hosho Digital in Indore, delivering production AI solutions in the Microsoft ecosystem:
+                        Azure OpenAI, AI Foundry, AI Search, <span className="uline">Copilot Studio and Power Platform</span>.
                     </p>
                     <p className="about-desc reveal" style={{ marginTop: '16px' }}>
-                        With a strong foundation in Python, Node.js, TypeScript, and React, I build
-                        production AI services containerized with Docker and deployed on Azure cloud.
-                        My work focuses on bridging the gap between cutting-edge AI research and
-                        practical business solutions.
+                        I own solutions end-to-end, from shaping requirements with business stakeholders to
+                        deployment, governance and cost control. With a background in DevOps and cloud
+                        security (Entra PIM, least-privilege access, release governance), I work AI-first
+                        with Claude Code and ship MVPs in days, not weeks.
                     </p>
                     <div className="about-stats reveal">
                         <div className="about-stat-item">
-                            <span className="about-stat-number">3+</span>
-                            <span className="about-stat-text">Professional Roles</span>
+                            <span className="about-stat-number" data-value="800" data-suffix="+">800+</span>
+                            <span className="about-stat-text">Candidates Screened</span>
                         </div>
                         <div className="about-stat-item">
-                            <span className="about-stat-number">5</span>
-                            <span className="about-stat-text">AI Projects Built</span>
-                        </div>
-                        <div className="about-stat-item">
-                            <span className="about-stat-number">60%</span>
+                            <span className="about-stat-number" data-value="60" data-suffix="%">60%</span>
                             <span className="about-stat-text">Faster Reviews</span>
                         </div>
                         <div className="about-stat-item">
-                            <span className="about-stat-number">80%</span>
+                            <span className="about-stat-number" data-value="80" data-suffix="%">80%</span>
                             <span className="about-stat-text">Faster Lookups</span>
+                        </div>
+                        <div className="about-stat-item">
+                            <span className="about-stat-number" data-value="3">3</span>
+                            <span className="about-stat-text">Clouds Governed</span>
                         </div>
                     </div>
                 </div>

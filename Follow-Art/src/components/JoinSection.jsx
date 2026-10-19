@@ -115,7 +115,7 @@ const JoinSection = () => {
 
             <footer className="footer reveal">
                 <div className="footer-inner">
-                    <span className="footer-copy">© 2025 Aman Raj. Built with React & GSAP.</span>
+                    <span className="footer-copy">© {new Date().getFullYear()} Aman Raj. Built with React & GSAP.</span>
                     <div className="footer-links">
                         <a href="https://github.com/Amanraj9910" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <a href="https://linkedin.com/in/aman-raj-250081303/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

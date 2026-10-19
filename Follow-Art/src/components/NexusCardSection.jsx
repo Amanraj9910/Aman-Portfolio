@@ -2,17 +2,20 @@ import React, { useState } from 'react';
 
 const EXPERIENCES = [
     {
-        role: 'Jr Consultant',
-        company: 'Hosho Digitals',
+        role: 'Technical Consultant (AI Engineer)',
+        company: 'Hosho Digital',
         location: 'Indore, Madhya Pradesh',
         period: 'July 2025 — Present',
         type: 'current',
         points: [
-            'Design and develop enterprise AI systems and agentic chatbots using Azure OpenAI, Azure AI Foundry, and Copilot Studio',
-            'Build multi-step reasoning workflows with tool integration for business automation',
-            'Build and deploy production AI services using FastAPI, containerized with Docker and hosted on Azure Container Apps and App Service',
+            'Turn client and internal business problems into working AI products, owning each from requirements to live deployment',
+            'Design and build multi-agent AI systems, where specialised agents split up a problem and work together to solve it',
+            'Work AI-first with Claude Code, shipping MVPs in days, not weeks, with performance, security and cost checks built in',
+            'Work with clients to shape requirements; write solution designs, architecture documents, BRDs and AI strategies',
+            'Designed the UAT → PROD release process: sign-offs from QA, Tech Lead and PM, a separate production environment, and Entra PIM for time-limited admin access',
+            'Run cloud provisioning and cost governance across Azure, GCP and Alibaba Cloud: least-privilege access, approved cost estimates, and budget alerts that stop resources at the limit',
         ],
-        tech: ['Azure OpenAI', 'AI Foundry', 'Copilot Studio', 'FastAPI', 'Docker'],
+        tech: ['Azure OpenAI', 'AI Foundry', 'Multi-Agent Systems', 'Claude Code', 'Entra PIM', 'Azure · GCP · Alibaba Cloud'],
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
@@ -21,41 +24,22 @@ const EXPERIENCES = [
         color: 'var(--accent)',
     },
     {
-        role: 'Junior Consultant Intern',
-        company: 'Hosho Digitals',
+        role: 'Technical Consultant Intern',
+        company: 'Hosho Digital',
         location: 'Indore, Madhya Pradesh',
         period: 'Jan 2025 — June 2025',
         type: 'past',
         points: [
-            'Delivered low-code solutions (Canvas Apps, Model-Driven Apps, Power Automate) reducing client delivery cycles',
-            'Built AI chatbots using Microsoft Copilot Studio, automating repetitive workflows and enhancing customer experience',
+            'Delivered Power Platform solutions (Canvas and Model-Driven Apps, Power Automate, Power BI, Dataverse) and Copilot Studio agents, automating client business workflows',
+            "Built an autonomous voice AI agent with Copilot Studio and Microsoft Graph that acts on the user's Microsoft 365 account from spoken requests, such as sending emails and scheduling meetings, with Entra ID sign-in",
         ],
-        tech: ['Canvas Apps', 'Power Automate', 'Copilot Studio'],
+        tech: ['Power Apps', 'Power Automate', 'Power BI', 'Dataverse', 'Copilot Studio', 'Microsoft Graph'],
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
             </svg>
         ),
         color: 'var(--blue)',
-    },
-    {
-        role: 'Graphic Designer Intern',
-        company: 'Pankhuri',
-        location: 'Jhansi, Uttar Pradesh',
-        period: 'June 2023 — Aug 2023',
-        type: 'past',
-        points: [
-            'Designed high-performing digital content using Adobe Illustrator & Canva',
-            'Boosted engagement by 30%, CTR by 25%, and social media reach by 25%',
-        ],
-        tech: ['Adobe Illustrator', 'Canva', 'Digital Marketing'],
-        icon: (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="13.5" cy="6.5" r="0.5" fill="currentColor" /><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor" /><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor" />
-                <circle cx="6.5" cy="12.5" r="0.5" fill="currentColor" /><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z" />
-            </svg>
-        ),
-        color: 'var(--purple)',
     },
 ];
 
@@ -69,7 +53,7 @@ const NexusCardSection = () => {
                     <h2 className="experience-title">EXPERIENCE</h2>
                     <p className="experience-subtitle">
                         Professional journey across <span className="uline">AI engineering</span>,
-                        cloud development, and <span className="uline">creative design</span>.
+                        Power Platform delivery, and <span className="uline">cloud governance</span>.
                     </p>
                 </div>
 

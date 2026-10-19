@@ -2,6 +2,13 @@ import React from 'react';
 
 const ACHIEVEMENTS = [
     {
+        icon: '🧭',
+        title: 'Team Lead & Intern Training Programme Lead',
+        subtitle: 'Hosho Digital — 2025–Present',
+        desc: 'Lead a 7–10 member team of engineers and interns, planning and reviewing their work, and run the intern training programme.',
+        highlight: 'Leadership',
+    },
+    {
         icon: '🏆',
         title: 'Shark Tank JEC',
         subtitle: 'Startup Pitching Competition — May 2023',
@@ -13,15 +20,8 @@ const ACHIEVEMENTS = [
         title: 'C-Cube Secretary',
         subtitle: 'Jabalpur Engineering College — 2023–2024',
         desc: 'Managed club events as Secretary & Overall Coordinator, strengthening organizational, leadership, and cross-team communication skills.',
-        highlight: 'Leadership',
+        highlight: 'Campus',
     },
-];
-
-const METRICS = [
-    { value: '60%', label: 'Faster Technical Reviews', desc: 'AI Recruitment Platform' },
-    { value: '80%', label: 'Faster Doc Lookups', desc: 'MS Documentation Chatbot' },
-    { value: '30%', label: 'Engagement Boost', desc: 'Pankhuri Design Work' },
-    { value: '25%', label: 'CTR Improvement', desc: 'Digital Content Design' },
 ];
 
 const TestimonialsSection = () => {
@@ -29,9 +29,8 @@ const TestimonialsSection = () => {
         <section className="section achievements-section" id="achievements">
             <div className="achievements-inner">
                 <div className="achievements-header reveal">
-                    <h2 className="achievements-title">ACHIEVEMENTS</h2>
+                    <h2 className="achievements-title">LEADERSHIP &<br />ACHIEVEMENTS</h2>
                 </div>
-
 
                 {/* Achievement Cards */}
                 <div className="achievements-cards">
