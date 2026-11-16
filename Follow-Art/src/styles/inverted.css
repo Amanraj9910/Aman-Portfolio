@@ -1,0 +1,851 @@
+/* ============================================================
+   The inverted layout: footer first, navigation at the bottom,
+   the words-in-motion section, leadership, and the closing masthead
+   ============================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Footer, at the top ---------- */
+
+.tfoot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 28px;
+  /* On phones the fixed bar still sits above, so start below it */
+  padding: calc(var(--nav-h) + 4px) var(--pad) 14px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  animation: tfoot-in 0.9s var(--ease-out) both;
+}
+
+@keyframes tfoot-in {
+  from { opacity: 0; transform: translateY(-100%); }
+}
+
+.tfoot__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.tfoot__links a,
+.tfoot__links button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 28px;
+  transition: color 0.3s;
+}
+
+.tfoot__links a:hover,
+.tfoot__links button:hover {
+  color: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  .tfoot {
+    min-height: var(--tfoot-h);
+    padding-block: 10px;
+  }
+}
+
+/* ---------- Navigation, at the bottom (desktop) ---------- */
+
+:root {
+  --tfoot-h: 52px;
+}
+
+@media (min-width: 1024px) {
+  .nav,
+  .nav.is-scrolled {
+    top: auto;
+    bottom: 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
+  .nav.is-hidden {
+    transform: translateY(100%);
+  }
+
+  .nav.is-hidden:focus-within {
+    transform: none;
+  }
+
+  /* The active dot sits above the label now that the bar hugs the bottom edge */
+  .nav__links a::before {
+    top: -9px;
+    bottom: auto;
+  }
+
+  /* Keep the floating pieces clear of the bar */
+  .hire {
+    bottom: calc(var(--nav-h) + 18px);
+  }
+
+  .toast {
+    bottom: calc(var(--nav-h) + 22px);
+  }
+
+  .hero {
+    min-height: min(calc(100vh - var(--tfoot-h)), 940px);
+    min-height: min(calc(100svh - var(--tfoot-h)), 940px);
+    padding-bottom: calc(var(--nav-h) + clamp(14px, 2.4vh, 28px));
+  }
+}
+
+/* ---------- Words that work ---------- */
+
+.kin__list {
+  border-top: 1px solid var(--line);
+}
+
+.kline {
+  display: grid;
+  gap: 12px 32px;
+  padding: clamp(26px, 3.8vw, 60px) 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.kline__meta {
+  display: flex;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.kline__meta b {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.kline__text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 86%;
+  font-size: clamp(31px, 5.4vw, 92px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 1024px) {
+  .kline {
+    grid-template-columns: 230px minmax(0, 1fr);
+    align-items: baseline;
+  }
+}
+
+/* Replay: snap back to the start without animating */
+.kline.is-rewinding *,
+.kline.is-rewinding *::before,
+.kline.is-rewinding *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+.k-accent,
+.k-num {
+  color: var(--accent);
+}
+
+.k-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 01 "weeks" is struck out and "days" takes its place */
+.k-old {
+  position: relative;
+  display: inline-block;
+  color: var(--dim);
+  transition: color 0.5s 0.45s;
+}
+
+.k-old::after {
+  content: '';
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  top: 56%;
+  height: 0.07em;
+  background: var(--accent);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out) 0.15s;
+}
+
+.k-new {
+  display: inline-block;
+  max-width: 4em;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+  overflow: hidden;
+  vertical-align: bottom;
+  color: var(--accent);
+  transition: max-width 0.7s var(--ease-out) 0.65s;
+}
+
+.k-new > span {
+  display: inline-block;
+  transition: transform 0.8s var(--ease-out) 0.8s;
+}
+
+.kin.is-armed .kline:not(.is-on) .k-old { color: inherit; }
+.kin.is-armed .kline:not(.is-on) .k-old::after { transform: scaleX(0); }
+.kin.is-armed .kline:not(.is-on) .k-new { max-width: 0; }
+.kin.is-armed .kline:not(.is-on) .k-new > span { transform: translateY(115%); }
+
+/* 02 "split" breaks in two; "together" pulls its letters back in */
+.k-split {
+  display: inline-block;
+  margin-inline: 0.08em;
+  color: var(--accent);
+}
+
+.k-split span {
+  display: inline-block;
+  transition: transform 0.9s var(--ease-out) 0.2s;
+}
+
+.k-split span:first-child { transform: translate(-0.09em, -0.07em) rotate(-5deg); }
+.k-split span:last-child { transform: translate(0.09em, 0.07em) rotate(4deg); }
+
+.k-join {
+  display: inline-block;
+  color: var(--accent);
+}
+
+.k-join span {
+  display: inline-block;
+  transition: transform 1.1s var(--ease-out) 0.75s, opacity 0.8s 0.75s;
+}
+
+.kin.is-armed .kline:not(.is-on) .k-split span { transform: none; }
+
+.kin.is-armed .kline:not(.is-on) .k-join span {
+  opacity: 0.35;
+  transform: translateX(calc(var(--o) * 0.2em));
+}
+
+/* 03 "tiny" is tiny, and a detection box lands on it */
+.k-box {
+  position: relative;
+  display: inline-block;
+  margin-inline: 0.85em;
+  font-size: 0.4em;
+  letter-spacing: 0;
+  vertical-align: 0.3em;
+}
+
+.k-box i {
+  position: absolute;
+  inset: -0.55em -0.7em;
+  border: 2px solid var(--accent);
+  border-radius: 3px;
+  transition: transform 0.7s var(--ease-out) 0.4s, opacity 0.3s 0.4s;
+}
+
+.k-box i::before {
+  content: attr(data-label);
+  position: absolute;
+  left: -2px;
+  bottom: 100%;
+  padding: 2px 6px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.kin.is-armed .kline:not(.is-on) .k-box i {
+  opacity: 0;
+  transform: scale(2);
+}
+
+/* 05 "cut" is sliced through the middle and the halves slip apart */
+.k-cut {
+  position: relative;
+  display: inline-block;
+  color: var(--accent);
+}
+
+.k-cut span {
+  display: inline-block;
+  transition: transform 0.6s var(--ease-out) 0.55s;
+}
+
+.k-cut span:first-child {
+  clip-path: inset(-0.2em -0.3em 42% -0.3em);
+  transform: translateX(-0.05em);
+}
+
+.k-cut span:last-child {
+  position: absolute;
+  left: 0;
+  top: 0;
+  clip-path: inset(58% -0.3em -0.2em -0.3em);
+  transform: translateX(0.09em);
+}
+
+.k-cut::after {
+  content: '';
+  position: absolute;
+  left: -0.14em;
+  right: -0.14em;
+  top: 58%;
+  height: 2px;
+  background: var(--text);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-in-out) 0.15s;
+}
+
+.kin.is-armed .kline:not(.is-on) .k-cut span { transform: none; }
+.kin.is-armed .kline:not(.is-on) .k-cut::after { transform: scaleX(0); }
+
+/* 06 "end-to-end" stretches from one edge to the other */
+.k-span {
+  display: flex;
+  align-items: center;
+  gap: 0.18em;
+  width: 100%;
+  color: var(--accent);
+}
+
+.k-span i {
+  flex: 1 1 0;
+  min-width: 0.25em;
+  height: 0.07em;
+  background: currentColor;
+  transition: flex-grow 1.5s var(--ease-in-out) 0.2s;
+}
+
+.kin.is-armed .kline:not(.is-on) .k-span i { flex-grow: 0; }
+
+/* 07 "stop" runs in and halts dead against the limit */
+.k-stop {
+  position: relative;
+  display: inline-block;
+  padding-right: 0.16em;
+  color: var(--accent);
+}
+
+.k-stop::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0.1em;
+  bottom: 0.06em;
+  width: 0.06em;
+  background: var(--text);
+}
+
+.k-stop > span {
+  display: inline-block;
+  transform-origin: right center;
+}
+
+.kin.is-armed .kline:not(.is-on) .k-stop > span { opacity: 0; }
+
+.kin.is-armed .kline.is-on .k-stop > span {
+  animation: k-stop 0.95s 0.25s both;
+}
+
+@keyframes k-stop {
+  0% { opacity: 0; transform: translateX(-1.8em); animation-timing-function: cubic-bezier(0.6, 0, 1, 0.7); }
+  68% { opacity: 1; transform: translateX(0) scaleX(1); animation-timing-function: ease-out; }
+  78% { opacity: 1; transform: translateX(0) scaleX(0.84); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* ---------- Leadership ---------- */
+
+.lead__grid {
+  display: grid;
+  gap: clamp(36px, 5vw, 96px);
+  margin-bottom: clamp(56px, 8vw, 120px);
+}
+
+@media (min-width: 1024px) {
+  .lead__grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+  }
+}
+
+.team svg {
+  display: block;
+  width: 100%;
+  max-width: 470px;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.team__orbit {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.team__link {
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.team__link.is-flex {
+  opacity: 0.45;
+}
+
+.team__seat {
+  fill: var(--text);
+}
+
+.team__seat.is-flex {
+  fill: var(--bg);
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.team__core circle {
+  fill: var(--accent);
+}
+
+.team__core text {
+  fill: var(--on-accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.team figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 470px;
+  margin: 18px auto 0;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lead__num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: clamp(88px, 13vw, 210px);
+  line-height: 0.85;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+
+.lead__num small {
+  display: block;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 400;
+  font-stretch: 100%;
+  line-height: 1.4;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lead__role {
+  margin-top: clamp(26px, 3vw, 44px);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 88%;
+  font-size: clamp(24px, 2.6vw, 40px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.lead__sub {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.lead__verbs {
+  margin-top: clamp(24px, 3vw, 40px);
+  border-top: 1px solid var(--line);
+}
+
+.lead__verbs li {
+  display: grid;
+  grid-template-columns: minmax(96px, 0.42fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.lead__verbs b {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 88%;
+  font-size: clamp(22px, 2.2vw, 34px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
+}
+
+.lead__verbs span {
+  color: var(--muted);
+}
+
+@media (hover: hover) {
+  .lead__verbs li:hover b {
+    color: var(--accent);
+  }
+}
+
+.lead__earlier {
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- The masthead, at the end ---------- */
+
+.endcap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 32px;
+  max-width: var(--max);
+  margin-inline: auto;
+  /* Room for the phone dock */
+  padding: 30px var(--pad) 110px;
+  border-top: 1px solid var(--line);
+}
+
+.endcap__brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 22px);
+}
+
+.endcap__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 82%;
+  font-size: clamp(40px, 7vw, 104px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.endcap__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.endcap__meta a {
+  transition: color 0.3s;
+}
+
+.endcap__meta a:hover {
+  color: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  .endcap {
+    /* Room for the bottom bar when it slides back in */
+    padding-bottom: calc(var(--nav-h) + 30px);
+  }
+}
+
+/* ---------- Skills: the core row and Azure services stand out ---------- */
+
+.stack__legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-bottom: 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.chip--azure {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.chip--azure::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* The AI & ML row: accent title, a permanent accent edge, brighter chips */
+.stack__row.is-core {
+  box-shadow: inset 3px 0 0 var(--accent);
+  background: linear-gradient(90deg, var(--accent-soft), transparent 70%);
+}
+
+.stack__row.is-core .stack__title {
+  color: var(--accent);
+  transition: color 0.45s var(--ease-out);
+}
+
+.stack__row.is-core .chip {
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+
+.stack__row.is-core .chip--azure {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.stack__core {
+  display: inline-block;
+  margin-left: 14px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  font-stretch: 100%;
+  letter-spacing: 0.09em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  vertical-align: middle;
+  transition: background-color 0.45s var(--ease-out), color 0.45s var(--ease-out);
+}
+
+/* While a row is lit in accent, everything on it flips to stay readable */
+.stack__row:is(.is-hover, .is-active).is-core .stack__title {
+  color: var(--on-accent);
+}
+
+.stack__row:is(.is-hover, .is-active) .stack__core {
+  background: var(--on-accent);
+  color: var(--accent);
+}
+
+.stack__row:is(.is-hover, .is-active) .chip--azure {
+  background: var(--on-accent);
+  border-color: var(--on-accent);
+  color: var(--accent);
+}
+
+.stack__row.is-core:is(.is-hover, .is-active) .chip:not(.chip--azure) {
+  color: var(--on-accent);
+  border-color: color-mix(in srgb, var(--on-accent) 42%, transparent);
+}
+
+/* ---------- Expandable detail (collapsed on phones only) ---------- */
+
+.xpand__btn {
+  display: none;
+}
+
+.hero__tagline--short {
+  display: none;
+}
+
+/* ---------- Phones: less on screen at once, calmer motion ---------- */
+
+@media (max-width: 699.98px) {
+  :root {
+    --section-y: 64px;
+  }
+
+  /* One quiet row of contact links under the bar */
+  .tfoot {
+    padding-bottom: 10px;
+    font-size: 11.5px;
+  }
+
+  .tfoot > span {
+    display: none;
+  }
+
+  .tfoot__links {
+    gap: 4px 16px;
+  }
+
+  /* Hero: one-breath pitch, roles stacked instead of a wrapped run-on line */
+  .hero__tagline--full {
+    display: none;
+  }
+
+  .hero__tagline--short {
+    display: block;
+  }
+
+  .hero__roles {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero__roles li:not(:last-child)::after {
+    content: none;
+  }
+
+  /* Section headings take less of the screen */
+  .shead {
+    margin-bottom: 30px;
+  }
+
+  .shead__ghost {
+    font-size: 132px;
+    opacity: 0.7;
+  }
+
+  /* Detail sits behind one tap */
+  .xpand:not(.is-open) .xpand__body {
+    display: none;
+  }
+
+  .xpand__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .xpand__btn i {
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid var(--accent);
+    border-bottom: 1.5px solid var(--accent);
+    rotate: 45deg;
+    translate: 0 -2px;
+    transition: rotate 0.4s var(--ease-out), translate 0.4s var(--ease-out);
+  }
+
+  .xpand.is-open .xpand__btn i {
+    rotate: -135deg;
+    translate: 0 2px;
+  }
+
+  .xpand.is-open .xpand__btn {
+    margin-top: 14px;
+  }
+
+  .xp__points {
+    margin-block: 18px;
+  }
+
+  .xpand .xp__points {
+    margin-top: 0;
+  }
+
+  .xp .xpand {
+    margin-bottom: 20px;
+  }
+
+  /* Words that work: tighter rows, shorter moves */
+  .kline {
+    gap: 8px;
+    padding: 22px 0;
+  }
+
+  .kline__text {
+    font-size: 30px;
+    line-height: 1.08;
+  }
+
+  /* Leadership: the diagram shrinks, earlier roles keep just their headline */
+  .team svg {
+    max-width: 300px;
+  }
+
+  .lead__num {
+    font-size: 84px;
+  }
+
+  .honour__desc {
+    display: none;
+  }
+
+  .honour {
+    padding: 20px 0;
+  }
+
+  /* About: two calm lines of numbers instead of four giant ones */
+  .stats__item dd {
+    font-size: 46px;
+  }
+
+  .stats {
+    margin-top: 36px;
+  }
+
+  .marquee--display li {
+    font-size: 48px;
+  }
+
+  .endcap {
+    padding-bottom: 96px;
+  }
+}
